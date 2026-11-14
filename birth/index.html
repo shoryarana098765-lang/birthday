@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Birthday Tanu 🎂</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:#ffe3ec;font-family:'Poppins','Noto Sans Devanagari',sans-serif;color:#7a1e48}
+#bg{position:fixed;inset:0;z-index:0;background:radial-gradient(circle at 18% 15%,#fff2f7,transparent 50%),radial-gradient(circle at 85% 85%,#ffcfe0,transparent 55%),linear-gradient(160deg,#ffe6ee,#ffc9dc);overflow:hidden}
+.flower{position:absolute;opacity:.75;animation:spin linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.petal{position:fixed;top:-40px;z-index:1;pointer-events:none;animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(115vh) rotate(540deg)}}
+
+.scene{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .9s;z-index:2;padding:16px;text-align:center}
+.scene.active{opacity:1;pointer-events:auto}
+.stk{position:absolute;mix-blend-mode:multiply;pointer-events:none;width:clamp(70px,16vw,140px);animation:floaty 4s ease-in-out infinite}
+@keyframes floaty{50%{transform:translateY(-12px)}}
+
+h1.title{font-family:'Pacifico',cursive;font-size:clamp(2.4rem,9vw,5rem);color:#d81b60;text-shadow:0 4px 0 #fff,0 8px 20px #ff6f9c66}
+.name{font-family:'Pacifico',cursive;font-size:clamp(1.8rem,6vw,3rem);color:#ff4f8b;margin-top:6px}
+.oops{margin-top:26px;font-size:clamp(.95rem,3.4vw,1.2rem);min-height:1.6em;opacity:0;transition:opacity 1s}
+.oops.show{opacity:1}
+.btn{border:none;cursor:pointer;font-family:inherit;font-size:1rem;font-weight:600;padding:12px 26px;border-radius:40px;
+  background:linear-gradient(135deg,#ff6f9c,#ff4f8b);color:#fff;box-shadow:0 8px 20px #ff4f8b55;transition:transform .2s;margin:6px}
+.btn:hover{transform:scale(1.06)}
+.btn.alt{background:#fff;color:#d81b60;box-shadow:0 6px 16px #0001}
+.hidden{display:none!important}
+
+/* flight */
+#flight{position:fixed;top:22%;left:0;z-index:6;display:none;align-items:center;pointer-events:none;will-change:transform}
+.banner{display:flex;padding:8px 22px 8px 26px;background:#fffaf2;border:3px solid #ff6f9c;border-radius:6px 14px 14px 6px;
+  font-family:'Pacifico',cursive;font-size:clamp(.9rem,3.4vw,1.5rem);color:#d81b60;white-space:nowrap;
+  clip-path:polygon(0 0,100% 0,100% 100%,0 100%,12px 50%)}
+.banner span{display:inline-block;animation:wave 1s ease-in-out infinite}
+@keyframes wave{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-7px) rotate(4deg)}}
+.rope{width:clamp(18px,5vw,40px);height:3px;background:#ff6f9c}
+#plane{width:clamp(70px,16vw,120px);transform-origin:50% 50%}
+
+/* cake */
+.cake{position:relative;width:min(68vw,250px);height:200px;margin:46px auto 14px}
+.plate{position:absolute;bottom:-6px;left:-12%;width:124%;height:18px;border-radius:50%;background:#fff;box-shadow:0 8px 16px #0002}
+.l1{position:absolute;bottom:8px;left:0;right:0;height:84px;border-radius:14px;
+  background:radial-gradient(circle,#fff 2px,transparent 3px) 0 0/22px 22px,#ff93b8}
+.l2{position:absolute;bottom:88px;left:13%;right:13%;height:66px;border-radius:14px;background:#ffb9d1}
+.icing{position:absolute;top:0;left:0;right:0;height:20px;background:#fff;border-radius:14px 14px 0 0}
+.icing::after{content:"";position:absolute;top:16px;left:0;right:0;height:28px;
+  background:radial-gradient(circle at 12px 0,#fff 12px,transparent 13px) 0 0/30px 28px repeat-x}
+.candle{position:absolute;bottom:152px;width:10px;height:36px;border-radius:3px;
+  background:repeating-linear-gradient(45deg,#fff 0 6px,#7ad7f0 6px 12px)}
+.flame{position:absolute;left:50%;bottom:100%;margin-left:-7px;width:14px;height:22px;
+  background:radial-gradient(circle at 50% 70%,#fff6a8,#ffb300 60%,#ff6d00);
+  border-radius:50% 50% 50% 50%/65% 65% 35% 35%;box-shadow:0 0 16px 6px #ffc10788;
+  animation:flick .35s ease-in-out infinite alternate;transform-origin:50% 100%;transition:all .5s}
+@keyframes flick{from{transform:scale(1,1) rotate(-3deg)}to{transform:scale(.9,1.12) rotate(3deg)}}
+.flame.out{opacity:0;transform:scale(0);animation:none}
+.smoke{position:absolute;width:10px;height:10px;border-radius:50%;background:#bbb9;filter:blur(2px);pointer-events:none}
+.hint{min-height:1.6em;margin:8px 0;font-size:1rem}
+
+/* calendar */
+.calwrap{display:flex;gap:clamp(14px,4vw,40px);align-items:center;justify-content:center;flex-wrap:wrap}
+.polaroid{background:#fff;padding:10px 10px 38px;border-radius:6px;box-shadow:0 12px 28px #0003;position:relative;transform:rotate(-4deg)}
+.polaroid img.ph{display:block;width:clamp(130px,34vw,230px);aspect-ratio:3/4;object-fit:cover;border-radius:3px}
+.polaroid .cap{position:absolute;bottom:8px;left:0;right:0;font-family:'Pacifico',cursive;font-size:.95rem;color:#d81b60}
+.tape{position:absolute;top:-12px;left:50%;width:70px;height:22px;margin-left:-35px;background:#ffe08a99;transform:rotate(3deg)}
+.calendar{background:#fffaf6;border-radius:20px;padding:16px;width:min(92vw,370px);box-shadow:0 14px 34px #c2185b33;border:3px solid #ffb3cb}
+.calendar h3{font-family:'Pacifico',cursive;color:#d81b60;font-size:1.5rem;margin-bottom:8px;font-weight:400}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.wd{font-weight:600;font-size:.8rem;color:#ff4f8b;padding:4px 0}
+.day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:.9rem}
+.day.hit{background:linear-gradient(135deg,#ff6f9c,#ff4f8b);color:#fff;font-weight:700;animation:pulse 1s ease-in-out 3}
+@keyframes pulse{50%{transform:scale(1.25)}}
+#fallcake{position:fixed;z-index:10;width:56px;height:56px;display:none;font-size:46px;line-height:56px;text-align:center;pointer-events:none}
+.pw{position:relative;overflow:hidden;border-radius:3px;line-height:0}
+.splat{position:absolute;inset:0;opacity:0;transform:scale(.2);transform-origin:50% 42%;pointer-events:none}
+.splat.show{opacity:1;transform:scale(1);transition:transform .4s cubic-bezier(.2,1.7,.4,1),opacity .15s}
+.splat svg{width:100%;height:100%;display:block}
+.drip{transform-box:fill-box;transform-origin:50% 0;transform:scaleY(0)}
+.splat.show .drip{animation:drip 3s ease-in forwards}
+@keyframes drip{to{transform:scaleY(1)}}
+
+/* reasons */
+.reasons{list-style:none;max-width:470px;width:100%;text-align:left}
+.reasons li{opacity:0;transform:translateX(-24px);transition:all .6s;background:#fffafc;border-radius:14px;padding:9px 14px;margin:6px 0;
+  box-shadow:0 4px 12px #c2185b22;font-size:clamp(.88rem,3.6vw,1.02rem);border-left:5px solid #ff6f9c}
+.reasons li.show{opacity:1;transform:none}
+
+/* balloons */
+.balloons{position:relative;width:min(94vw,520px);height:min(44vh,330px);margin:6px 0}
+.bal{position:absolute;font-size:clamp(56px,15vw,84px);background:none;border:none;cursor:pointer;line-height:1;
+  animation:bob 3s ease-in-out infinite;filter:hue-rotate(var(--h))}
+@keyframes bob{50%{transform:translateY(-14px) rotate(5deg)}}
+.wish{min-height:3.2em;font-family:'Pacifico',cursive;font-size:clamp(1.1rem,4.6vw,1.7rem);color:#d81b60;margin:6px 0;max-width:90vw}
+.wish.pulse{animation:zoom .6s}
+
+/* gift */
+.giftbox{font-size:clamp(90px,26vw,150px);cursor:pointer;animation:shake 1.4s ease-in-out infinite;line-height:1}
+@keyframes shake{0%,100%{transform:rotate(0)}10%{transform:rotate(-8deg)}20%{transform:rotate(8deg)}30%{transform:rotate(-6deg)}40%{transform:rotate(6deg)}50%{transform:rotate(0)}}
+.coupon{background:#fffaf2;border:3px dashed #ff6f9c;border-radius:16px;padding:18px 20px;max-width:min(88vw,360px);box-shadow:0 14px 30px #c2185b33;animation:zoom .7s}
+.coupon h3{font-family:'Pacifico',cursive;font-weight:400;color:#d81b60;font-size:1.5rem}
+.coupon p{margin:6px 0;line-height:1.6}
+
+/* memories */
+.stack{position:relative;width:clamp(200px,56vw,270px);height:clamp(270px,76vw,350px)}
+.stack .polaroid{position:absolute;inset:0;opacity:0;transition:opacity .8s,transform .8s;cursor:pointer}
+.stack .polaroid.on{opacity:1}
+.stack .polaroid img.ph{width:100%;height:calc(100% - 28px);aspect-ratio:auto}
+.big{font-family:'Pacifico',cursive;font-size:clamp(2rem,7vw,3.2rem);color:#d81b60}
+.score{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:700;background:linear-gradient(135deg,#ff4f8b,#ff9a3c);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* envelope */
+.env{position:relative;width:min(80vw,320px);height:min(54vw,214px);background:#ffb3cb;border-radius:10px;cursor:pointer;
+  box-shadow:0 16px 34px #c2185b44;perspective:800px;animation:floaty 3s ease-in-out infinite}
+.env .front{position:absolute;inset:0;background:#ff8fb3;border-radius:10px;clip-path:polygon(0 0,50% 56%,100% 0,100% 100%,0 100%)}
+.env .flap{position:absolute;top:0;left:0;right:0;height:60%;background:#ff6f9c;clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top;transition:transform .7s;z-index:3}
+.env.open .flap{transform:rotateX(180deg);z-index:0}
+.env .seal{position:absolute;left:50%;top:50%;margin:-6% 0 0 -20px;font-size:34px;z-index:4;transition:opacity .3s}
+.env.open .seal{opacity:0}
+.letter{position:fixed;inset:0;z-index:30;background:#ffd6e3ee;display:none;align-items:center;justify-content:center;padding:16px}
+.letter.show{display:flex;animation:zoom .7s}
+@keyframes zoom{from{transform:scale(.6);opacity:0}}
+.lcard{background:#fffaf4;border-radius:18px;padding:26px 22px;max-width:520px;max-height:86vh;overflow:auto;box-shadow:0 20px 50px #c2185b44;
+  text-align:left;line-height:1.85;font-size:1rem;border:3px dashed #ffb3cb}
+.lcard h2{font-family:'Pacifico',cursive;color:#d81b60;font-weight:400;margin-bottom:8px}
+.lcard .shayari{margin:14px 0;padding:12px 14px;background:#fff0f5;border-left:4px solid #ff6f9c;border-radius:8px;font-style:italic;color:#a3154f}
+.conf{position:fixed;z-index:25;pointer-events:none;border-radius:2px}
+#mute{position:fixed;top:12px;right:12px;z-index:40;width:42px;height:42px;border-radius:50%;border:none;background:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 12px #0002;display:none}
+</style>
+</head>
+<body>
+<div id="bg"></div>
+<button id="mute" title="Music on/off">🔊</button>
+
+<!-- 0: start -->
+<section class="scene active" id="s0">
+  <img class="stk" src="stickers/balloons.jpg" style="left:4%;top:8%">
+  <img class="stk" src="stickers/gifts.jpg" style="right:5%;bottom:8%">
+  <p style="font-size:3rem">🎁</p>
+  <h1 class="title" style="font-size:clamp(2rem,7vw,3.6rem)">Tanu, tumhare liye<br>ek chhota sa surprise 💖</h1>
+  <button class="btn" id="startBtn" style="margin-top:26px">Open karo 🎀</button>
+  <p style="margin-top:14px;font-size:.85rem;opacity:.7">🔊 Sound on rakhna</p>
+</section>
+
+<!-- 1: plane -->
+<section class="scene" id="s1">
+  <img class="stk" src="stickers/balloons.jpg" style="left:3%;top:42%">
+  <img class="stk" src="stickers/stars.jpg" style="right:4%;top:6%">
+  <h1 class="title">Happy Birthday</h1>
+  <div class="name">Tanu 🌸</div>
+  <p class="oops" id="oops"></p>
+</section>
+
+<!-- 2: cake -->
+<section class="scene" id="s2">
+  <img class="stk" src="stickers/gifts.jpg" style="left:3%;bottom:6%">
+  <img class="stk" src="stickers/confetti.jpg" style="right:4%;top:6%">
+  <img class="stk" src="stickers/balloons.jpg" style="right:3%;bottom:8%">
+  <h2 class="name" style="margin:0">Make a wish, Tanu ✨</h2>
+  <div class="cake" id="cake">
+    <div class="l1"></div>
+    <div class="l2"><div class="icing"></div></div>
+    <div class="candle" style="left:38%"><div class="flame"></div></div>
+    <div class="candle" style="left:49%"><div class="flame"></div></div>
+    <div class="candle" style="left:60%"><div class="flame"></div></div>
+    <div class="plate"></div>
+  </div>
+  <p class="hint" id="hint">🎵 Happy birthday to you... 🎵</p>
+  <div>
+    <button class="btn" id="blowBtn">💨 Candle blow karo</button>
+    <button class="btn alt" id="micBtn">🎤 Mic se phoonk maaro</button>
+  </div>
+</section>
+
+<!-- 3: calendar -->
+<section class="scene" id="s3">
+  <img class="stk" src="stickers/stars.jpg" style="left:2%;top:4%">
+  <img class="stk" src="stickers/heart.jpg" style="right:2%;bottom:4%">
+  <div class="calwrap">
+    <div class="polaroid" id="polaroid"><div class="tape"></div>
+      <div class="pw"><img class="ph" id="calPh" src="photos/tanu1.jpg" alt="">
+        <div class="splat" id="splat">
+          <svg viewBox="0 0 200 267" preserveAspectRatio="none">
+            <g fill="#fff6ec" stroke="#ffd1e0" stroke-width="3" opacity=".96">
+              <path d="M100 38 C142 26 180 58 168 100 C190 122 172 170 136 162 C130 196 88 200 78 168 C42 178 20 136 42 110 C22 78 58 44 100 38Z"/>
+              <circle cx="28" cy="58" r="12"/><circle cx="174" cy="36" r="9"/><circle cx="38" cy="196" r="10"/><circle cx="166" cy="206" r="13"/><circle cx="100" cy="14" r="8"/>
+            </g>
+            <g fill="#ffb3cb"><circle cx="74" cy="96" r="17"/><circle cx="128" cy="122" r="21"/><circle cx="98" cy="154" r="14"/><circle cx="60" cy="132" r="9"/></g>
+            <circle cx="108" cy="72" r="9" fill="#e53935"/><circle cx="105" cy="69" r="2.5" fill="#fff" opacity=".8"/>
+            <g fill="#fff6ec" stroke="#ffd1e0" stroke-width="2">
+              <rect class="drip" x="62" y="140" width="15" height="95" rx="7.5" style="animation-delay:.5s"/>
+              <rect class="drip" x="104" y="160" width="13" height="75" rx="6.5" style="animation-delay:1s"/>
+              <rect class="drip" x="140" y="130" width="15" height="110" rx="7.5" style="animation-delay:.8s"/>
+              <rect class="drip" x="34" y="120" width="11" height="70" rx="5.5" style="animation-delay:1.4s"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="cap">Our birthday girl 🎀</div></div>
+    <div class="calendar">
+      <h3>November 2026</h3>
+      <div class="grid" id="calgrid"></div>
+      <p id="calmsg" style="margin-top:10px;min-height:1.6em;font-weight:600;color:#d81b60"></p>
+    </div>
+  </div>
+  <button class="btn hidden" id="calNext" style="margin-top:18px">Next ➜</button>
+</section>
+<div id="fallcake">🎂</div>
+
+<!-- 4: memories -->
+<section class="scene" id="s4">
+  <img class="stk" src="stickers/heart.jpg" style="left:2%;top:5%">
+  <img class="stk" src="stickers/stars.jpg" style="right:3%;bottom:5%">
+  <div class="calwrap">
+    <div class="stack" id="stack">
+      <div class="polaroid on"><div class="tape"></div><img class="ph" src="photos/tanu1.jpg" alt=""><div class="cap">Memories 📸</div></div>
+      <div class="polaroid"><div class="tape"></div><img class="ph" src="photos/tanu2.jpg" alt=""><div class="cap">Memories 📸</div></div>
+      <div class="polaroid"><div class="tape"></div><img class="ph" src="photos/tanu3.jpg" alt=""><div class="cap">Memories 📸</div></div>
+      <div class="polaroid"><div class="tape"></div><img class="ph" src="photos/tanu4.jpg" alt=""><div class="cap">Memories 📸</div></div>
+    </div>
+    <div>
+      <div class="big">Bonny Cutie 🐰</div>
+      <div class="score">11/10</div>
+      <p style="font-weight:600;font-size:1.1rem">My Best Friend · My Besti 💞</p>
+    </div>
+  </div>
+  <button class="btn" id="memNext" style="margin-top:22px">Next ➜</button>
+</section>
+
+<!-- 5: envelope -->
+<section class="scene" id="s5">
+  <img class="stk" src="stickers/heart.jpg" style="left:3%;bottom:6%">
+  <img class="stk" src="stickers/stars.jpg" style="right:3%;top:6%">
+  <h2 class="name" style="margin:0 0 26px">Ek last cheez... 💌</h2>
+  <div class="env" id="env"><div class="front"></div><div class="flap"></div><div class="seal">💗</div></div>
+  <p style="margin-top:18px">Envelope pe tap karo</p>
+  <button class="btn alt" id="skipBtn" style="margin-top:8px">Skip ⏭</button>
+  <div class="letter" id="letter">
+    <div class="lcard">
+      <h2>Dear Tanu 💖</h2>
+      <p>तुम मेरी सिर्फ़ best friend नहीं हो, तुम मेरा सुकून हो।</p>
+      <p style="margin-top:8px">जब मैं anxiety और overthinking में उलझा हुआ था, तब तुमने मुझे संभाला, मेरी बातें सुनीं और इतने सारे solutions दिए कि मैं उन सबसे बाहर निकल पाया। तुम्हारी वजह से आज मैं बहुत बेहतर हूँ। Thank you for everything. 🫶</p>
+      <p style="margin-top:8px"><b>You are my soul, Tanu.</b> 🌸</p>
+      <div class="shayari">
+        दोस्त तो बहुत मिले इस सफ़र में,<br>
+        पर तुझ जैसा सुकून कहीं नहीं मिला,<br>
+        तेरे होने से हर डर छोटा लगा,<br>
+        तेरे जैसा कोई अपना नहीं मिला। 💕
+      </div>
+      <p>Happy Birthday, my bestie! तुम हमेशा ऐसे ही मुस्कुराती रहो। 🎂</p>
+      <p style="margin-top:10px;text-align:right">— <span id="fromName"></span> 💗</p>
+      <div style="text-align:center;margin-top:12px"><button class="btn" id="finishBtn">Finish ✨</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7: reasons -->
+<section class="scene" id="s7">
+  <img class="stk" src="stickers/stars.jpg" style="left:2%;top:3%">
+  <img class="stk" src="stickers/heart.jpg" style="right:3%;bottom:3%">
+  <h2 class="name" style="margin:0 0 12px;font-size:clamp(1.4rem,5.5vw,2.2rem)">Tum itni khaas kyun ho 💖</h2>
+  <ul class="reasons" id="reasons"></ul>
+  <button class="btn hidden" id="reasonNext" style="margin-top:12px">Next ➜</button>
+</section>
+
+<!-- 8: balloons -->
+<section class="scene" id="s8">
+  <img class="stk" src="stickers/confetti.jpg" style="right:3%;top:4%">
+  <h2 class="name" style="margin:0;font-size:clamp(1.4rem,5.5vw,2.2rem)">Balloons phodo, wishes padho 🎈</h2>
+  <div class="balloons" id="balloons"></div>
+  <div class="wish" id="wishText">Balloon pe tap karo 👆</div>
+  <button class="btn hidden" id="balloonNext">Next ➜</button>
+</section>
+
+<!-- 9: gift coupon -->
+<section class="scene" id="s9">
+  <img class="stk" src="stickers/gifts.jpg" style="left:3%;bottom:5%">
+  <img class="stk" src="stickers/stars.jpg" style="right:3%;top:5%">
+  <h2 class="name" style="margin:0 0 14px;font-size:clamp(1.4rem,5.5vw,2.2rem)">Ek chhota sa gift 🎁</h2>
+  <div class="giftbox" id="giftbox">🎁</div>
+  <p id="giftHint" style="margin-top:10px">Tap karke kholo 👆</p>
+  <div class="coupon hidden" id="coupon">
+    <h3>🎟️ Birthday Coupon</h3>
+    <p><b>Valid for:</b> <span id="couponText"></span></p>
+    <p><b>Expiry:</b> Kabhi nahi, forever 💞</p>
+    <p style="text-align:right">— <span id="fromName2"></span></p>
+  </div>
+  <button class="btn hidden" id="giftNext" style="margin-top:14px">Next ➜</button>
+</section>
+
+<!-- 6: finale -->
+<section class="scene" id="s6">
+  <img class="stk" src="stickers/balloons.jpg" style="left:3%;top:8%">
+  <img class="stk" src="stickers/gifts.jpg" style="right:4%;bottom:8%">
+  <img class="stk" src="stickers/heart.jpg" style="right:4%;top:6%">
+  <p style="font-size:3.4rem">🎂</p>
+  <h1 class="title">Happy Birthday<br>Tanu! 💖</h1>
+  <p style="margin-top:16px;font-size:1.1rem">Hamesha aise hi muskurati rehna 🌸</p>
+  <button class="btn alt" onclick="location.reload()" style="margin-top:22px">🔁 Phir se dekho</button>
+</section>
+
+<div id="flight">
+  <div class="banner" id="banner"></div>
+  <div class="rope"></div>
+  <svg id="plane" viewBox="0 0 120 60">
+    <path d="M8 28 L2 10 L18 10 L26 25Z" fill="#ff8fb3"/>
+    <path d="M50 24 L30 2 L46 2 L74 23Z" fill="#ff8fb3"/>
+    <path d="M50 36 L30 58 L46 58 L74 37Z" fill="#ff8fb3"/>
+    <path d="M5 30 L35 23 L95 21 Q118 24 118 30 Q118 36 95 39 L35 37Z" fill="#fff" stroke="#ff6f9c" stroke-width="3"/>
+    <circle cx="98" cy="29" r="4.5" fill="#9be7ff"/><circle cx="82" cy="29" r="3.5" fill="#9be7ff"/><circle cx="68" cy="29" r="3.5" fill="#9be7ff"/>
+  </svg>
+</div>
+
+<script>
+/* ====== CONFIG: yahan badal sakte ho ====== */
+const FRIEND = "Tanu";
+const FROM_NAME = "Shorya";   // <- apna naam yahan likho
+const COUPON = "1 treat meri taraf se 🍕🍫 (Tanu ki choice!)";
+const REASONS = [
+  "Tum meri baat bina bole samajh jaati ho 🫶",
+  "Tumhari hasi se pura din achha ho jaata hai 😄",
+  "Tumne mujhe anxiety aur overthinking se nikalne mein help ki 🌱",
+  "Tum solutions ki machine ho, har problem ka jugaad 🧠",
+  "Tum judge nahi karti, bas sunti ho 💗",
+  "Aur tum meri Bonny Cutie ho 🐰"
+];
+const WISHES = [
+  "Tum hamesha khush raho 😊",
+  "Tumhare saare sapne poore hon ✨",
+  "Anxiety ko bye-bye, sirf smile 🌈",
+  "Is saal tumhe bahut saara pyaar mile 💖",
+  "Tumhari har wish sach ho 🌠",
+  "Aur main hamesha tumhara bestie rahun 🫶"
+];
+/* ========================================== */
+
+const $ = id => document.getElementById(id);
+let timers = [];
+const later = (fn, ms) => { const t = setTimeout(fn, ms); timers.push(t); return t; };
+$('fromName').textContent = FROM_NAME;
+$('fromName2').textContent = FROM_NAME;
+$('couponText').textContent = COUPON;
+
+/* sparkle trail */
+let lastSp = 0;
+addEventListener('pointermove', e => {
+  const n = Date.now(); if(n - lastSp < 70) return; lastSp = n;
+  const s = document.createElement('div'); s.className = 'conf'; s.textContent = '✨';
+  s.style.cssText += `left:${e.clientX}px;top:${e.clientY}px;font-size:14px;z-index:50`;
+  document.body.appendChild(s);
+  s.animate([{transform:'translateY(0) scale(1)',opacity:1},{transform:'translateY(-26px) scale(.4)',opacity:0}],{duration:800}).onfinish = () => s.remove();
+});
+
+/* ---------- background flowers + falling petals ---------- */
+function flowerSVG(color){
+  let p = '';
+  for(let i=0;i<8;i++) p += `<ellipse cx="0" cy="-26" rx="12" ry="23" fill="${color}" transform="rotate(${i*45})"/>`;
+  return `<svg viewBox="-55 -55 110 110">${p}<circle r="11" fill="#ffd54f"/><circle r="5" fill="#ffb300"/></svg>`;
+}
+(function buildBg(){
+  const cols = ['#ff8fb3','#ffb3cb','#ffc2d9','#ff9ec0','#ffd9e6','#ffb7d5'];
+  for(let i=0;i<16;i++){
+    const d = document.createElement('div'); d.className = 'flower';
+    const s = 50 + Math.random()*110;
+    d.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-duration:${40+Math.random()*50}s;margin:-${s/2}px 0 0 -${s/2}px`;
+    d.innerHTML = flowerSVG(cols[i%cols.length]);
+    $('bg').appendChild(d);
+  }
+  ['🌸','🌷','🌼','🌺','🪷'].forEach((e,k)=>{
+    for(let i=0;i<4;i++){
+      const p = document.createElement('div'); p.className = 'petal'; p.textContent = e;
+      p.style.cssText = `left:${Math.random()*100}%;font-size:${14+Math.random()*16}px;animation-duration:${9+Math.random()*10}s;animation-delay:-${Math.random()*15}s;opacity:.8`;
+      document.body.appendChild(p);
+    }
+  });
+})();
+
+/* ---------- confetti ---------- */
+function burst(x,y,n=40){
+  const cols = ['#ff6f9c','#ffd54f','#7ad7f0','#b388ff','#ff8a65','#81c784'];
+  for(let i=0;i<n;i++){
+    const p = document.createElement('div'); p.className = 'conf';
+    p.style.left = x+'px'; p.style.top = y+'px';
+    if(i%7===0){ p.textContent = ['💖','✨','🌸'][i%3]; p.style.fontSize = '18px'; }
+    else { p.style.background = cols[i%cols.length]; p.style.width = (6+Math.random()*6)+'px'; p.style.height = (8+Math.random()*8)+'px'; }
+    document.body.appendChild(p);
+    const a = Math.random()*Math.PI*2, d = 80+Math.random()*180;
+    p.animate([
+      {transform:'translate(0,0) rotate(0)',opacity:1},
+      {transform:`translate(${Math.cos(a)*d}px,${Math.sin(a)*d+120}px) rotate(${Math.random()*720}deg)`,opacity:0}
+    ],{duration:1200+Math.random()*900,easing:'cubic-bezier(.2,.7,.4,1)'}).onfinish = () => p.remove();
+  }
+}
+function pop(x,y,emoji){
+  const e = document.createElement('div');
+  e.textContent = emoji;
+  e.style.cssText = `position:fixed;z-index:26;left:${x-40}px;top:${y-40}px;font-size:80px;pointer-events:none`;
+  document.body.appendChild(e);
+  e.animate([{transform:'scale(.2)',opacity:1},{transform:'scale(1.4)',opacity:1,offset:.5},{transform:'scale(1.8)',opacity:0}],{duration:900}).onfinish = () => e.remove();
+}
+function rain(){
+  const e = document.createElement('div'); e.className = 'conf';
+  e.textContent = ['🎉','💖','✨','🌸','🎈'][Math.floor(Math.random()*5)];
+  e.style.cssText += `left:${Math.random()*100}vw;top:-30px;font-size:${16+Math.random()*16}px`;
+  document.body.appendChild(e);
+  e.animate([{transform:'translateY(0) rotate(0)'},{transform:`translateY(${innerHeight+60}px) rotate(${Math.random()*540}deg)`}],{duration:3500+Math.random()*2500,easing:'linear'}).onfinish = () => e.remove();
+}
+
+/* ---------- music: Happy Birthday (no mp3 needed) ---------- */
+let ac, master, userMuted = false, ducked = false;
+const N = {G4:392,A4:440,B4:493.88,C5:523.25,D5:587.33,E5:659.25,F5:698.46,G5:783.99};
+const MEL = [
+  ['G4',.75],['G4',.25],['A4',1],['G4',1],['C5',1],['B4',2],
+  ['G4',.75],['G4',.25],['A4',1],['G4',1],['D5',1],['C5',2],
+  ['G4',.75],['G4',.25],['G5',1],['E5',1],['C5',1],['B4',1],['A4',2],
+  ['F5',.75],['F5',.25],['E5',1],['C5',1],['D5',1],['C5',2]
+];
+const BEAT = 0.52;
+function setMaster(){ if(master) master.gain.setTargetAtTime((userMuted||ducked)?0:0.17, ac.currentTime, 0.05); }
+function playLoop(){
+  let t = ac.currentTime + 0.1, total = 0;
+  MEL.forEach(([n,b])=>{
+    const dur = b*BEAT;
+    [[N[n],'triangle',1],[N[n]/2,'sine',.35]].forEach(([f,type,g])=>{
+      const o = ac.createOscillator(), v = ac.createGain();
+      o.type = type; o.frequency.value = f;
+      v.gain.setValueAtTime(0,t);
+      v.gain.linearRampToValueAtTime(g,t+0.03);
+      v.gain.exponentialRampToValueAtTime(0.001,t+dur*0.95);
+      o.connect(v); v.connect(master); o.start(t); o.stop(t+dur);
+    });
+    t += dur; total += dur;
+  });
+  setTimeout(playLoop, (total+1.2)*1000);
+}
+function startMusic(){
+  try{
+    ac = new (window.AudioContext||window.webkitAudioContext)();
+    master = ac.createGain(); master.gain.value = 0.17; master.connect(ac.destination);
+    playLoop(); $('mute').style.display = 'block';
+  }catch(e){}
+}
+$('mute').onclick = () => { userMuted = !userMuted; $('mute').textContent = userMuted ? '🔇' : '🔊'; setMaster(); };
+
+/* ---------- scene control ---------- */
+function go(n){
+  timers.forEach(t => { clearTimeout(t); clearInterval(t); }); timers = [];
+  document.querySelector('.scene.active')?.classList.remove('active');
+  $('s'+n).classList.add('active');
+  if(n !== 1) $('flight').style.display = 'none';
+  ({1:initPlane,2:initCake,3:initCal,4:initMem,6:initFinale,7:initReasons,8:initBalloons,9:initGift})[n]?.();
+}
+$('startBtn').onclick = () => { startMusic(); go(1); };
+
+/* ---------- scene 1: plane ---------- */
+(function(){
+  const b = $('banner');
+  (`Happy Birthday ${FRIEND}!`).split('').forEach((c,i)=>{
+    const s = document.createElement('span'); s.innerHTML = c === ' ' ? '&nbsp;' : c;
+    s.style.animationDelay = (i*0.08)+'s'; b.appendChild(s);
+  });
+})();
+function initPlane(){
+  const f = $('flight'), pl = $('plane');
+  f.getAnimations().forEach(a=>a.cancel()); pl.getAnimations().forEach(a=>a.cancel());
+  f.style.display = 'flex'; pl.style.opacity = 1;
+  $('oops').classList.remove('show');
+  const W = innerWidth, H = innerHeight, fw = f.offsetWidth, top = f.getBoundingClientRect().top;
+  const x0 = -fw-30, x1 = W*0.62-fw, y1 = -H*0.04, x2 = W*0.86-fw, y2 = H*0.74-top;
+  f.style.transform = `translate(${x0}px,0)`;
+  later(()=>{
+    const a = f.animate([{transform:`translate(${x0}px,0)`},{transform:`translate(${x1}px,${y1}px)`}],{duration:4500,easing:'ease-in-out',fill:'forwards'});
+    a.onfinish = () => {
+      pl.animate([{transform:'rotate(0)'},{transform:'rotate(-10deg)',offset:.2},{transform:'rotate(12deg)',offset:.4},{transform:'rotate(80deg)'}],{duration:1500,easing:'ease-in',fill:'forwards'});
+      const c = f.animate([{transform:`translate(${x1}px,${y1}px)`},{transform:`translate(${x2}px,${y2}px)`}],{duration:1500,easing:'ease-in',fill:'forwards'});
+      c.onfinish = () => {
+        const r = pl.getBoundingClientRect(), x = r.left+r.width/2, y = r.top+r.height/2;
+        burst(x,y,70); pop(x,y,'💥'); pl.style.opacity = 0;
+        $('oops').textContent = 'Oops! Plane crash ho gaya 🙈 par wish pahunch gayi 💖';
+        $('oops').classList.add('show');
+        later(()=>go(2), 3800);
+      };
+    };
+  }, 900);
+}
+
+/* ---------- scene 2: cake ---------- */
+let blown = false;
+function initCake(){
+  blown = false;
+  document.querySelectorAll('.flame').forEach(f=>f.classList.remove('out'));
+  $('hint').textContent = '🎵 Happy birthday to you... 🎵';
+}
+function blow(){
+  if(blown) return; blown = true;
+  document.querySelectorAll('.flame').forEach(f=>{
+    const r = f.getBoundingClientRect();
+    f.classList.add('out');
+    for(let i=0;i<4;i++){
+      const s = document.createElement('div'); s.className = 'smoke';
+      s.style.left = (r.left+r.width/2-5)+'px'; s.style.top = r.top+'px'; s.style.position = 'fixed'; s.style.zIndex = 12;
+      document.body.appendChild(s);
+      s.animate([{transform:'translate(0,0) scale(1)',opacity:.7},{transform:`translate(${(Math.random()-.5)*40}px,-${60+Math.random()*50}px) scale(2.5)`,opacity:0}],{duration:1800,delay:i*150,fill:'both'}).onfinish = () => s.remove();
+    }
+  });
+  const c = $('cake').getBoundingClientRect();
+  burst(c.left+c.width/2, c.top+20, 70);
+  $('hint').textContent = 'Yayyy! 🎉 Wish pooree hogi, pakka! 💖';
+  later(()=>go(3), 3000);
+}
+$('blowBtn').onclick = blow;
+$('micBtn').onclick = async () => {
+  try{
+    const stream = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true}});
+    ducked = true; setMaster();
+    const mc = new (window.AudioContext||window.webkitAudioContext)();
+    const an = mc.createAnalyser(); an.fftSize = 1024;
+    mc.createMediaStreamSource(stream).connect(an);
+    const buf = new Uint8Array(an.fftSize); let hits = 0, ticks = 0;
+    $('hint').textContent = '🎤 Ab zor se phoonk maaro... 😮‍💨';
+    const iv = setInterval(()=>{
+      an.getByteTimeDomainData(buf);
+      let s = 0; for(const v of buf){ const d=(v-128)/128; s += d*d; }
+      const rms = Math.sqrt(s/buf.length);
+      hits = rms > 0.18 ? hits+1 : 0; ticks++;
+      if(hits >= 3 || ticks > 250){
+        clearInterval(iv); stream.getTracks().forEach(t=>t.stop()); mc.close();
+        ducked = false; setMaster();
+        if(hits >= 3) blow(); else $('hint').textContent = 'Mic se nahi hua — button daba do 💨';
+      }
+    }, 60);
+  }catch(e){ $('hint').textContent = 'Mic allow nahi hua — button se blow kar do 💨'; }
+};
+
+/* ---------- scene 3: calendar ---------- */
+(function(){
+  const g = $('calgrid');
+  ['S','M','T','W','T','F','S'].forEach(d => g.innerHTML += `<div class="wd">${d}</div>`);
+  for(let i=1;i<=30;i++) g.innerHTML += `<div class="day" id="d${i}">${i}</div>`;   // 1 Nov 2026 = Sunday
+})();
+function initCal(){
+  const d = $('d15'); d.classList.remove('hit'); resetSplat();
+  $('calmsg').textContent = ''; $('calNext').classList.add('hidden');
+  const fc = $('fallcake'); fc.style.display = 'none';
+  later(()=>{
+    const r = d.getBoundingClientRect();
+    const ty = r.top + r.height/2 - 28;
+    fc.style.left = (r.left + r.width/2 - 28)+'px'; fc.style.top = ty+'px'; fc.style.display = 'block';
+    const h = -(ty+90);
+    fc.animate([
+      {transform:`translateY(${h}px) rotate(-20deg)`},
+      {transform:'translateY(0) rotate(0)',offset:.55},
+      {transform:'translateY(-26px)',offset:.72},
+      {transform:'translateY(0)',offset:.86},
+      {transform:'translateY(-8px)',offset:.94},
+      {transform:'translateY(0)'}
+    ],{duration:1900,easing:'ease-in',fill:'forwards'}).onfinish = () => {
+      d.classList.add('hit');
+      burst(r.left+r.width/2, r.top+r.height/2, 50);
+      $('calmsg').textContent = '15 November — Tanu ka din 🎂💖';
+      later(()=>throwCake(r), 1400);
+    };
+  }, 1500);
+}
+$('calNext').onclick = () => { $('fallcake').style.display = 'none'; go(4); };
+
+let splatOn = false, wipe = 0;
+function resetSplat(){ const sp = $('splat'); sp.classList.remove('show'); sp.style.cssText = ''; splatOn = false; wipe = 0; }
+function throwCake(r){
+  const fc = $('fallcake'), ph = $('calPh').getBoundingClientRect();
+  fc.getAnimations().forEach(a => a.cancel());
+  const sx = r.left+r.width/2, sy = r.top+r.height/2;
+  const tx = ph.left+ph.width/2, ty = ph.top+ph.height*0.42;
+  const dx = tx-sx, dy = ty-sy;
+  $('calmsg').textContent = 'Tanu ke liye special delivery... 🎂💨';
+  fc.animate([
+    {transform:'translate(0,0) rotate(0) scale(1)'},
+    {transform:`translate(${dx*0.5}px,${dy*0.5-110}px) rotate(360deg) scale(1.6)`,offset:.5},
+    {transform:`translate(${dx}px,${dy}px) rotate(720deg) scale(1.2)`}
+  ],{duration:1000,easing:'ease-in',fill:'forwards'}).onfinish = () => splat(tx,ty);
+}
+function splat(tx,ty){
+  const fc = $('fallcake'); fc.getAnimations().forEach(a => a.cancel()); fc.style.display = 'none';
+  const sp = $('splat'); sp.style.cssText = ''; sp.classList.add('show'); splatOn = true; wipe = 0;
+  pop(tx,ty,'💥'); burst(tx,ty,80);
+  $('polaroid').animate([
+    {transform:'rotate(-4deg)'},{transform:'rotate(-13deg) translateX(-12px)'},
+    {transform:'rotate(6deg) translateX(12px)'},{transform:'rotate(-7deg)'},{transform:'rotate(-4deg)'}
+  ],{duration:550});
+  $('calmsg').textContent = 'SPLAT! 🎂💥 Tanu ke muh pe cake 😂';
+  later(()=>{
+    const ch = document.createElement('div'); ch.className = 'conf'; ch.textContent = '🍰';
+    ch.style.cssText += `left:${tx-22}px;top:${ty}px;font-size:44px;z-index:12`;
+    document.body.appendChild(ch);
+    const fallY = innerHeight - ty + 90;
+    ch.animate([
+      {transform:'translate(0,0) rotate(0)',easing:'ease-out'},
+      {transform:'translate(8px,70px) rotate(14deg)',offset:.4,easing:'cubic-bezier(.5,0,1,.6)'},
+      {transform:`translate(-24px,${fallY}px) rotate(-70deg)`}
+    ],{duration:2800,easing:'linear'}).onfinish = () => ch.remove();
+  }, 900);
+  later(()=>{ $('calmsg').textContent = 'Photo pe tap karke cake saaf karo 🧽'; $('calNext').classList.remove('hidden'); }, 3800);
+}
+$('polaroid').onclick = () => {
+  if(!splatOn) return;
+  wipe++; const sp = $('splat');
+  sp.style.transition = 'opacity .4s'; sp.style.opacity = Math.max(0, 1 - wipe*0.34);
+  const r = $('calPh').getBoundingClientRect(); burst(r.left+r.width/2, r.top+r.height/2, 14);
+  if(wipe >= 3){ splatOn = false; $('calmsg').textContent = 'Saaf! Ab bilkul cute lag rahi ho 🥰 Happy Birthday!'; }
+};
+
+/* ---------- scene 4: memories ---------- */
+let mi = 0;
+function showMem(i){
+  const items = document.querySelectorAll('#stack .polaroid');
+  items.forEach((el,k)=>{
+    el.classList.toggle('on', k===i);
+    el.style.transform = `rotate(${[-4,3,-2,4][k]}deg)`;
+  });
+}
+function initMem(){
+  mi = 0; showMem(0);
+  timers.push(setInterval(()=>{ mi = (mi+1)%4; showMem(mi); }, 2800));
+}
+$('stack').onclick = () => { mi = (mi+1)%4; showMem(mi); };
+$('memNext').onclick = () => go(7);
+
+/* ---------- scene 7: reasons ---------- */
+function initReasons(){
+  const ul = $('reasons'); ul.innerHTML = ''; $('reasonNext').classList.add('hidden');
+  REASONS.forEach((t,i)=>{
+    const li = document.createElement('li'); li.textContent = t; ul.appendChild(li);
+    later(()=>li.classList.add('show'), 600 + i*1500);
+  });
+  later(()=>$('reasonNext').classList.remove('hidden'), 600 + REASONS.length*1500);
+}
+$('reasonNext').onclick = () => go(8);
+
+/* ---------- scene 8: balloons ---------- */
+function initBalloons(){
+  const box = $('balloons'); box.innerHTML = ''; $('balloonNext').classList.add('hidden');
+  $('wishText').textContent = 'Balloon pe tap karo 👆';
+  let popped = 0;
+  WISHES.forEach((w,i)=>{
+    const b = document.createElement('button'); b.className = 'bal'; b.textContent = '🎈';
+    b.style.cssText = `left:${(i%3)*33+1}%;top:${Math.floor(i/3)*48}%;--h:${i*55}deg;animation-delay:-${i*0.5}s`;
+    b.onclick = () => {
+      const r = b.getBoundingClientRect();
+      burst(r.left+r.width/2, r.top+r.height/2, 35); pop(r.left+r.width/2, r.top+r.height/2, '💥');
+      b.remove(); popped++;
+      const wt = $('wishText'); wt.textContent = w; wt.classList.remove('pulse'); void wt.offsetWidth; wt.classList.add('pulse');
+      if(popped === WISHES.length) later(()=>$('balloonNext').classList.remove('hidden'), 1200);
+    };
+    box.appendChild(b);
+  });
+}
+$('balloonNext').onclick = () => go(9);
+
+/* ---------- scene 9: gift coupon ---------- */
+function initGift(){
+  $('giftbox').classList.remove('hidden'); $('giftHint').classList.remove('hidden');
+  $('coupon').classList.add('hidden'); $('giftNext').classList.add('hidden');
+}
+$('giftbox').onclick = () => {
+  const r = $('giftbox').getBoundingClientRect();
+  burst(r.left+r.width/2, r.top+r.height/2, 90); pop(r.left+r.width/2, r.top+r.height/2, '🎉');
+  $('giftbox').classList.add('hidden'); $('giftHint').classList.add('hidden');
+  $('coupon').classList.remove('hidden');
+  later(()=>$('giftNext').classList.remove('hidden'), 1200);
+};
+$('giftNext').onclick = () => go(5);
+
+/* ---------- scene 5: envelope ---------- */
+$('env').onclick = () => {
+  if($('env').classList.contains('open')) return;
+  $('env').classList.add('open');
+  later(()=>$('letter').classList.add('show'), 800);
+};
+$('skipBtn').onclick = () => go(6);
+$('finishBtn').onclick = () => { $('letter').classList.remove('show'); go(6); };
+
+/* ---------- scene 6: finale ---------- */
+function initFinale(){
+  burst(innerWidth/2, innerHeight/3, 90);
+  timers.push(setInterval(rain, 220));
+  timers.push(setInterval(()=>burst(innerWidth*(0.15+Math.random()*0.7), innerHeight*(0.15+Math.random()*0.4), 50), 900));
+}
+$('s6').addEventListener('click', e => { if(e.target.tagName !== 'BUTTON'){ burst(e.clientX, e.clientY, 60); pop(e.clientX, e.clientY, '🎆'); } });
+</script>
+</body>
+</html>
